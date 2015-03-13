@@ -1,13 +1,17 @@
 class Solution:
     # @return a string
     def fractionToDecimal(self, numerator, denominator):
+    	flag = 0 # flag = 1 when the result is negative  
+    	if (numerator * denominator < 0):
+    		flag = 1
+    	numerator = abs(numerator)
+    	denominator = abs(denominator)
         decimal = numerator%denominator
         integer = (numerator-decimal)/denominator
         index = {}
         indexarr = []
         decimalOutputCache = []
         r = str(integer)
-        r1 = ""  # r1 is decimal part
         if(decimal>0):
         	z = decimal
         	index[decimal] = 1
@@ -51,7 +55,9 @@ class Solution:
 		# 			indexarr.append(decimal)
 		# #			decimalOutputCache.append(k)
 		# 			print "a"
-        return r
+	if flag == 1:
+		return "-" + r
+	return r
 
 s = Solution()
-print s.fractionToDecimal(2,1)
+print s.fractionToDecimal(-50,2)
